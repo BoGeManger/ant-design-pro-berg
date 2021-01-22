@@ -20,6 +20,7 @@ const constantRouterComponents = {
   // 你需要动态引入的页面组件
   'Home': () => import('@/views/Home'),
   'ComponentList': () => import('@/views/system/component/ComponentList'),
+  'ComponentEdit': () => import('@/views/system/component/ComponentEdit'),
   
 }
 
@@ -30,11 +31,11 @@ const notFoundRouter = {
 
 // 根级菜单
 const rootRouter = {
-  name: "menu.home",
+  name: "",
   perms: "index",
   type: 0,
   router: {
-    icon:"home",
+    icon:"",
     component: "BasicLayout",
     path: "/",
     redirect: "/home",
@@ -54,7 +55,7 @@ const homeRouter = {
     router: {
       component: "PageView",
       path: "",
-      icon: "setting",
+      icon: "home",
       redirect: "",
       hidden: 0,
       hideChildreninMenu: 0,
@@ -75,6 +76,7 @@ export const generatorDynamicRouter = () => {
   if(isNullOrEmpty(storage.get(ROUTERS))){
     return new Promise((resolve, reject) => {
       getComTreeByUser().then(res => {
+        debugger
         const menuNav = []
         const childrenNav = []
         childrenNav.push(homeRouter)

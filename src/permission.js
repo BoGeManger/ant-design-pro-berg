@@ -24,9 +24,9 @@ router.beforeEach((to, from, next) => {
       next({ path: defaultRoutePath })
       NProgress.done()
     } else {
-      console.log(store.getters.addRouters)
       if (store.getters.addRouters.length === 0) {
         store.dispatch('GenerateRoutes', {} ).then((res) => {
+          console.log(res)
           // 动态添加可访问路由表       
           router.addRoutes(res)
           // 请求带有 redirect 重定向时，登录自动重定向到该地址
